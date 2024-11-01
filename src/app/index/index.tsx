@@ -1,4 +1,4 @@
-import { View, Image, TouchableOpacity } from "react-native";
+import { View, Image, TouchableOpacity, FlatList } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
 import { styles } from "./styles";
@@ -18,10 +18,20 @@ export default function Index() {
         </TouchableOpacity>
       </View>
       <Categories />
-      <Link
-        name="Shoes"
-        url="https://www.rocketseat.com.br/"
-        onDetails={() => console.log("Click!")}
+
+      <FlatList
+        data={["1", "2", "3", "4", "5"]}
+        keyExtractor={(item) => item}
+        renderItem={() => (
+          <Link
+            name="Shoes"
+            url="https://www.adidas.com/us/shoes"
+            onDetails={() => console.log("Click!")}
+          />
+        )}
+        style={styles.links}
+        contentContainerStyle={styles.linksContent}
+        showsVerticalScrollIndicator={false}
       />
     </View>
   );
