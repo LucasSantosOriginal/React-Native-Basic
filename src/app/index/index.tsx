@@ -1,4 +1,11 @@
-import { View, Image, TouchableOpacity, FlatList } from "react-native";
+import {
+  View,
+  Image,
+  TouchableOpacity,
+  FlatList,
+  Modal,
+  Text,
+} from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
 import { styles } from "./styles";
@@ -33,6 +40,25 @@ export default function Index() {
         contentContainerStyle={styles.linksContent}
         showsVerticalScrollIndicator={false}
       />
+      <Modal transparent visible={true}>
+        <View style={styles.modal}>
+          <View style={styles.modalContent}>
+            <View style={styles.modalHeader}>
+              <Text style={styles.modalCategory}>Saiba mais</Text>
+
+              <TouchableOpacity>
+                <MaterialIcons
+                  name="close"
+                  size={20}
+                  color={colors.gray[400]}
+                />
+              </TouchableOpacity>
+            </View>
+            <Text style={styles.modalLinkName}>Adidas</Text>
+            <Text style={styles.modalUrl}>adidas.com/us</Text>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
