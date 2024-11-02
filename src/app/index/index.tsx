@@ -12,6 +12,7 @@ import { styles } from "./styles";
 import { colors } from "@/styles/colors";
 
 import { Link } from "@/componenets/link";
+import { Option } from "@/componenets/option";
 import { Categories } from "@/componenets/categories";
 
 export default function Index() {
@@ -56,6 +57,10 @@ export default function Index() {
             </View>
             <Text style={styles.modalLinkName}>Adidas</Text>
             <Text style={styles.modalUrl}>adidas.com/us</Text>
+            <View style={styles.modalFooter}>
+              <Option name="Excluir" icon="delete" variant="secondary" />
+              <Option name="Abrir" icon="language" />
+            </View>
           </View>
         </View>
       </Modal>
