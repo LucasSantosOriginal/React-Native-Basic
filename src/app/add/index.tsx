@@ -7,6 +7,7 @@ import { colors } from "@/styles/colors";
 
 import { Categories } from "@/componenets/categories";
 import { Input } from "@/componenets/input";
+import { Button } from "@/componenets/button";
 
 export default function Add() {
   return (
@@ -23,6 +24,7 @@ export default function Add() {
       <View style={styles.form}>
         <Input placeholder="Name" />
         <Input placeholder="Link" />
+        <Button title="Add" />
       </View>
     </View>
   );
