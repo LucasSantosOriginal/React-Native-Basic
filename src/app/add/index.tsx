@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Alert } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
 
@@ -17,7 +17,16 @@ export default function Add() {
   const [url, setUrl] = useState("");
 
   function handleAdd() {
-    console.log({ name, url });
+    if (!category) {
+      return Alert.alert("Category", "Select the Category");
+    }
+    if (!name.trim()) {
+      return Alert.alert("Name", "add a name");
+    }
+    if (!url.trim()) {
+      return Alert.alert("email", "add your email!");
+    }
+    console.log({ category, name, url });
   }
 
   // function textChange(value: string) {
@@ -37,7 +46,7 @@ export default function Add() {
       <Categories onChange={setCategory} selected={category} />
       <View style={styles.form}>
         <Input placeholder="Name" onChangeText={setName} autoCorrect={true} />
-        <Input placeholder="Link" onChangeText={setUrl} autoCorrect={false} />
+        <Input placeholder="Email" onChangeText={setUrl} autoCorrect={false} />
         <Button title="Add" onPress={handleAdd} />
       </View>
       {/* <Text style={styles.title}>{name}</Text> */}
