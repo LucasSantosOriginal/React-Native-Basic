@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { View, Text, TouchableOpacity } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
@@ -10,6 +12,17 @@ import { Input } from "@/componenets/input";
 import { Button } from "@/componenets/button";
 
 export default function Add() {
+  const [name, setName] = useState("");
+  const [url, setUrl] = useState("");
+
+  function handleAdd() {
+    console.log({ name, url });
+  }
+
+  // function textChange(value: string) {
+  //   setName(value);
+  // }
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -22,10 +35,11 @@ export default function Add() {
       <Text style={styles.label}>Select one category</Text>
       <Categories />
       <View style={styles.form}>
-        <Input placeholder="Name" onChangeText={console.log} />
-        <Input placeholder="Link" />
-        <Button title="Add" />
+        <Input placeholder="Name" onChangeText={setName} autoCorrect={true} />
+        <Input placeholder="Link" onChangeText={setUrl} autoCorrect={false} />
+        <Button title="Add" onPress={handleAdd} />
       </View>
+      {/* <Text style={styles.title}>{name}</Text> */}
     </View>
   );
 }
