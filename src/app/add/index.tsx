@@ -12,6 +12,7 @@ import { Input } from "@/componenets/input";
 import { Button } from "@/componenets/button";
 
 export default function Add() {
+  const [category, setCategory] = useState("");
   const [name, setName] = useState("");
   const [url, setUrl] = useState("");
 
@@ -33,7 +34,7 @@ export default function Add() {
       </View>
 
       <Text style={styles.label}>Select one category</Text>
-      <Categories />
+      <Categories onChange={setCategory} selected={category} />
       <View style={styles.form}>
         <Input placeholder="Name" onChangeText={setName} autoCorrect={true} />
         <Input placeholder="Link" onChangeText={setUrl} autoCorrect={false} />
