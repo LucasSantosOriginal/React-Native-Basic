@@ -41,6 +41,12 @@ export default function Add() {
       // console.log(data);
 
       //console.log({ category, name, url }); // agora utilizado no await acima
+      Alert.alert("Sucess", "new email added", [
+        {
+          text: "Ok",
+          onPress: () => router.back(),
+        },
+      ]);
     } catch (error) {
       Alert.alert("Error", "could not save");
       console.log(error);

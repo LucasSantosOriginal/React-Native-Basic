@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useCallback } from "react";
 
 import {
   View,
@@ -19,7 +19,7 @@ import { linkStorage, LinkStorage } from "@/storage/link-storage";
 import { Link } from "@/componenets/link";
 import { Option } from "@/componenets/option";
 import { Categories } from "@/componenets/categories";
-import { router, Router } from "expo-router";
+import { router, useFocusEffect } from "expo-router";
 import { useLinkProps } from "@react-navigation/native";
 
 // IMPORTS
@@ -39,9 +39,15 @@ export default function Index() {
 
   // UseEffect pratice = useEffect(() => {}, [])
 
-  useEffect(() => {
-    getLinks();
-  }, [category]);
+  // useEffect(() => {
+  //   getLinks();
+  // }, [category]);
+
+  useFocusEffect(
+    useCallback(() => {
+      getLinks();
+    }, [])
+  );
 
   return (
     <View style={styles.container}>
