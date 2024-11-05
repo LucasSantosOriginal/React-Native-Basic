@@ -8,6 +8,7 @@ import {
   Modal,
   Text,
   Alert,
+  Linking,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
@@ -62,6 +63,15 @@ export default function Index() {
     ]);
   }
 
+  async function handleOpen() {
+    try {
+      await Linking.openURL(link.url);
+      setShowModal(false);
+    } catch (error) {
+      Alert.alert("Link", "Unable to open the link, try again");
+      console.log(error);
+    }
+  }
   // UseEffect pratice = useEffect(() => {}, [])
 
   // useEffect(() => {
@@ -122,7 +132,7 @@ export default function Index() {
                 variant="secondary"
                 onPress={handleRemove}
               />
-              <Option name="Open" icon="language" />
+              <Option name="Open" icon="language" onPress={handleOpen} />
             </View>
           </View>
         </View>
