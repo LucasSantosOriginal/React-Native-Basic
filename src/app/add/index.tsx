@@ -37,8 +37,8 @@ export default function Add() {
         category,
       });
 
-      const data = await linkStorage.get();
-      console.log(data);
+      // const data = await linkStorage.get();
+      // console.log(data);
 
       //console.log({ category, name, url }); // agora utilizado no await acima
     } catch (error) {

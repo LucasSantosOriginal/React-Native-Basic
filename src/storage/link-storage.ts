@@ -9,11 +9,9 @@
 
 
 import AsyncStorage from "@react-native-async-storage/async-storage"
-import { Try } from "expo-router/build/views/Try"
-
 const LINKS_STORAGE_KEY = "links-storage"
 
-type LinkStorage = {
+export type LinkStorage = {
     id: string
     name: string
     url: string
