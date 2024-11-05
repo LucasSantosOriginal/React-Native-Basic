@@ -10,23 +10,41 @@ import { colors } from "@/styles/colors";
 import { Categories } from "@/componenets/categories";
 import { Input } from "@/componenets/input";
 import { Button } from "@/componenets/button";
+import { linkStorage } from "@/storage/link-storage";
+// IMPORTS
 
 export default function Add() {
   const [category, setCategory] = useState("");
   const [name, setName] = useState("");
   const [url, setUrl] = useState("");
 
-  function handleAdd() {
-    if (!category) {
-      return Alert.alert("Category", "Select the Category");
+  async function handleAdd() {
+    try {
+      if (!category) {
+        return Alert.alert("Category", "Select the Category");
+      }
+      if (!name.trim()) {
+        return Alert.alert("Name", "add a name");
+      }
+      if (!url.trim()) {
+        return Alert.alert("email", "add your email!");
+      }
+
+      await linkStorage.save({
+        id: new Date().getTime().toString(), //log data, hora em forma de string ao apertar em "add"
+        name,
+        url,
+        category,
+      });
+
+      const data = await linkStorage.get();
+      console.log(data);
+
+      //console.log({ category, name, url }); // agora utilizado no await acima
+    } catch (error) {
+      Alert.alert("Error", "could not save");
+      console.log(error);
     }
-    if (!name.trim()) {
-      return Alert.alert("Name", "add a name");
-    }
-    if (!url.trim()) {
-      return Alert.alert("email", "add your email!");
-    }
-    console.log({ category, name, url });
   }
 
   // function textChange(value: string) {
@@ -46,7 +64,12 @@ export default function Add() {
       <Categories onChange={setCategory} selected={category} />
       <View style={styles.form}>
         <Input placeholder="Name" onChangeText={setName} autoCorrect={true} />
-        <Input placeholder="Email" onChangeText={setUrl} autoCorrect={false} />
+        <Input
+          placeholder="Email"
+          onChangeText={setUrl}
+          autoCorrect={false}
+          autoCapitalize="none"
+        />
         <Button title="Add" onPress={handleAdd} />
       </View>
       {/* <Text style={styles.title}>{name}</Text> */}
