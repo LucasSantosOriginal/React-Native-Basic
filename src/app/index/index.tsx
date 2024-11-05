@@ -44,6 +44,24 @@ export default function Index() {
     setLink(seletected);
   }
 
+  async function linkRemove() {
+    try {
+      await linkStorage.remove(link.id);
+      getLinks();
+      setShowModal(false);
+    } catch (error) {
+      Alert.alert("Error", "Could not delete");
+      console.log(error);
+    }
+  }
+
+  function handleRemove() {
+    Alert.alert("Delete", "Do you really want to delete?", [
+      { style: "cancel", text: "No" },
+      { text: "Yes", onPress: linkRemove },
+    ]);
+  }
+
   // UseEffect pratice = useEffect(() => {}, [])
 
   // useEffect(() => {
@@ -98,8 +116,13 @@ export default function Index() {
             <Text style={styles.modalLinkName}>{link.name}</Text>
             <Text style={styles.modalUrl}>{link.url}</Text>
             <View style={styles.modalFooter}>
-              <Option name="Excluir" icon="delete" variant="secondary" />
-              <Option name="Abrir" icon="language" />
+              <Option
+                name="Delete"
+                icon="delete"
+                variant="secondary"
+                onPress={handleRemove}
+              />
+              <Option name="Open" icon="language" />
             </View>
           </View>
         </View>
